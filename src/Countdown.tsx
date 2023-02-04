@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import BibleVerse from './BibleVerse';
 
 interface Props {
   date: string;
@@ -7,7 +8,7 @@ interface Props {
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   text-align: center;
 
@@ -73,7 +74,7 @@ const Countdown: React.FC<Props> = ({ date }) => {
 
   return (
     <>
-    <h1>Sue's Retirement Countdown!</h1>
+    <h1>Susie 🌹 Retirement Countdown!</h1>
     <Container style={{'display': 'flex', 'justifyContent': 'center', 'alignItems':'center'}}>
       <Unit>
         <Number>{timeLeft.years}</Number>
@@ -96,6 +97,7 @@ const Countdown: React.FC<Props> = ({ date }) => {
         <Label>Seconds</Label>
       </Unit>
     </Container>
+    <BibleVerse />
     </>
   );
 };
