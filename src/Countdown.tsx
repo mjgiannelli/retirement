@@ -62,7 +62,7 @@ const Countdown: React.FC<Props> = ({ date }) => {
       setTimeLeft({
         years: Math.floor(diff / (1000 * 60 * 60 * 24 * 365)),
         days: Math.floor((diff / (1000 * 60 * 60 * 24)) % 365),
-        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24)+1,
         minutes: Math.floor((diff / (1000 * 60)) % 60),
         seconds: Math.floor((diff / 1000) % 60),
       });
