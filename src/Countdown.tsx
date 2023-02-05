@@ -46,6 +46,7 @@ const Countdown: React.FC<Props> = ({ date }) => {
     minutes: 0,
     seconds: 0,
   });
+  const [businessDaysLeft, setBusinessDaysLeft] = useState<string>("");
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -70,6 +71,31 @@ const Countdown: React.FC<Props> = ({ date }) => {
     return () => {
       clearInterval(intervalId);
     };
+  }, [date]);
+
+  
+  useEffect(() => {
+    function businessDaysBetween() {
+      // convert input dates to Date objects
+      const startDate = new Date();
+      const endDate = new Date(date);
+    
+      // calculate the difference in milliseconds
+      let diff = endDate.getTime() - startDate.getTime();
+    
+      // convert the difference to days
+      let diffInDays = diff / (1000 * 60 * 60 * 24);
+    
+      // get the number of weekends in the period
+      let weekends = Math.floor(diffInDays / 7);
+      let days = diffInDays - (weekends * 2);
+    
+      // subtract weekends from the total number of days
+      let businessDays = Math.ceil(days - weekends);
+      
+      setBusinessDaysLeft(businessDays.toLocaleString());
+    }
+    businessDaysBetween();
   }, [date]);
 
   return (
@@ -97,6 +123,7 @@ const Countdown: React.FC<Props> = ({ date }) => {
         <Label>Seconds</Label>
       </Unit>
     </Container>
+    <p style={{fontSize: '30px', fontWeight: 'bold'}}>Working Days Left: <span style={{color: 'green'}}>{businessDaysLeft}</span></p>
     <BibleVerse />
     </>
   );
