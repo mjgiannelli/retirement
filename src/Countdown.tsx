@@ -75,7 +75,7 @@ const Countdown: React.FC<Props> = ({ date }) => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [date]);
+  }, [date, currentDate]);
 
   useEffect(() => {
     function businessDaysBetween(years: number) {
