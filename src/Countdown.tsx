@@ -91,7 +91,7 @@ const Countdown: React.FC<Props> = ({ date }) => {
         }
         calcDate.setDate(calcDate.getDate() + 1);
       }
-      // subtract out holidays
+     
       let holidays = years * 14 + 14;
 
       setBusinessDaysLeft((businessDays - holidays).toString());
