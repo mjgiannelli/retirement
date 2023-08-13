@@ -75,28 +75,30 @@ const Countdown: React.FC<Props> = ({ date }) => {
 
   
   useEffect(() => {
-    function businessDaysBetween() {
+    function businessDaysBetween(years: number) {
       // convert input dates to Date objects
       const startDate = new Date();
+      let businessDays = 0;
       const endDate = new Date(date);
     
-      // calculate the difference in milliseconds
-      let diff = endDate.getTime() - startDate.getTime();
+      let calcDate = new Date(startDate);
     
-      // convert the difference to days
-      let diffInDays = diff / (1000 * 60 * 60 * 24);
-    
-      // get the number of weekends in the period
-      let weekends = Math.floor(diffInDays / 7);
-      let days = diffInDays - (weekends * 2);
-    
-      // subtract weekends from the total number of days
-      let businessDays = Math.ceil(days - weekends);
+      while (calcDate < endDate) {
+        if (!(calcDate.getDay() === 6 || calcDate.getDay() === 0)) {
+          businessDays++;
+        }
+        calcDate.setDate(calcDate.getDate() + 1);
+      }
+       // subtract out holidays
+       let holidays = years * 14 + 14;
       
-      setBusinessDaysLeft(businessDays.toLocaleString());
+       setBusinessDaysLeft((businessDays - holidays).toString());
     }
-    businessDaysBetween();
-  }, [date]);
+    if(timeLeft.years !== 0) {
+      businessDaysBetween(timeLeft.years);
+    }
+    
+  }, [date, timeLeft.years]);
 
   return (
     <>

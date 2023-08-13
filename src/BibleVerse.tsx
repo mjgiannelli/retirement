@@ -22,7 +22,17 @@ const BibleVerse: React.FC = () => {
 
   return (
     <>
-    <h1>Verse of the day 😇</h1>
+      <h1
+      style={{
+        backgroundColor: "black",
+        color: "lightpink",
+        height: "60px",
+        display: "flex",
+        flexWrap: "wrap",
+        alignContent: "center",
+        justifyContent: "center"
+      }}
+      >Verse of the day 😇</h1>
       {verse?.map((verse) => {
         return (
           <div style={{ textAlign: "center" }}>
@@ -31,7 +41,9 @@ const BibleVerse: React.FC = () => {
               <span style={{ color: "red" }}>{verse?.chapter}</span> :{" "}
               <span style={{ color: "green" }}>{verse?.verse}</span>
             </p>
-            <p style={{ fontSize: "1.25rem" }}>{verse?.text}</p>
+            <p style={{ fontSize: "1.25rem", padding: "0 10px" }}>
+              {verse?.text}
+            </p>
           </div>
         );
       })}
