@@ -79,7 +79,6 @@ const Countdown: React.FC<Props> = ({ date }) => {
 
   useEffect(() => {
     function businessDaysBetween(years: number) {
-      // convert input dates to Date objects
       const startDate = new Date();
       let businessDays = 0;
       const endDate = new Date(date);
