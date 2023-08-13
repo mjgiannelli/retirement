@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-const BibleVerse: React.FC = () => {
+interface Props {
+  date: Date | undefined;
+}
+
+const BibleVerse: React.FC<Props> = ({ date }) => {
   interface Verse {
     bookname: string;
     chapter: string;
@@ -18,7 +22,7 @@ const BibleVerse: React.FC = () => {
       setVerse(data);
     };
     fetchData();
-  }, []);
+  }, [date]);
 
   return (
     <>
